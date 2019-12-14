@@ -4,10 +4,7 @@ import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 
 @InjectViewState
-class MainPresenter : MvpPresenter<IMain.View>() {
+class MainPresenter : MvpPresenter<MainView>() {
 
-    fun onStartScan() {
-        viewState.startScan()
-    }
 
 }

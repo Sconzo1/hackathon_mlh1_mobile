@@ -5,13 +5,6 @@ import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 
 @StateStrategyType(AddToEndSingleStrategy::class)
-interface IMain {
+interface MainView : MvpView {
 
-    interface View : MvpView {
-        fun startScan()
-    }
-
-    interface Presenter {
-
-    }
 }

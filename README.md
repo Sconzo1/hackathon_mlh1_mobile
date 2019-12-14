@@ -1,4 +1,4 @@
-#hackathon-LHD_Ahiru-no-Sora
+# hackathon-LHD_Ahiru-no-Sora
 1) Ahiru no Sora;
 2) Авербах Андрей, Бесштанникова Елизавета, Сенчин Данил, Хрякова Юлия, Якубицкий Владислав;
 3) Your track;

@@ -52,10 +52,10 @@ dependencies {
 
     // Moxy
     kapt 'com.arello-mobile:moxy-compiler:1.5.5'
-    implementation 'com.arello-mobile:moxy-app-compat:1.5.5'
-    implementation "com.android.support:appcompat-v7:28.0.0"
     implementation 'com.arello-mobile:moxy-android:1.5.5'
-
+    implementation ('tech.schoolhelper:moxy-x-androidx:1.7.0'){
+        exclude group: 'tech.schoolhelper', module:'moxy-x'
+    }
 
     testImplementation 'junit:junit:4.12'
 }

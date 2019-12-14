@@ -1,31 +1,40 @@
 package com.vladco.fudo.main
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
+import android.view.WindowManager
 import com.arellomobile.mvp.MvpAppCompatActivity
-import com.vladco.fudo.ScannerActivity
+import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.PresenterType
+import com.vladco.fudo.R
+import com.vladco.fudo.calendar.CalendarFragment
+import kotlinx.android.synthetic.main.main_activity.*
 
 
-class MainActivity : MvpAppCompatActivity(), IMain.View {
+class MainActivity : MvpAppCompatActivity(), MainView {
 
-    private val REQUEST_CODE = 1
+
+    @InjectPresenter(type = PresenterType.LOCAL)
+    lateinit var presenter: MainPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val intent = Intent(this, ScannerActivity::class.java)
+        setContentView(R.layout.main_activity)
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
+        setSupportActionBar(main_toolbar)
 
-        startActivityForResult(intent, REQUEST_CODE)
+        init()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK)
-            data?.getStringExtra("barcode")?.let {
-                // TODO()
-            }
-    }
+    private fun init() {
 
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
+
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.main_container, CalendarFragment(), null)
+            .commit()
+
+    }
 
 }
