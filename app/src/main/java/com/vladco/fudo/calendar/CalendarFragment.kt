@@ -16,6 +16,8 @@ class CalendarFragment : MvpAppCompatFragment(), CalendarView {
     @InjectPresenter(type = PresenterType.LOCAL)
     lateinit var presenter: CalendarPresenter
 
+    var i = 2
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
