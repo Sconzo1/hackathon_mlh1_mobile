@@ -23,8 +23,12 @@
 
     <color name="calendar_btn_food_shadow">#808080</color>
 
+    <color name="addproduct_spinner_stroke">#D9000000</color>
 
     <color name="titleFragment">#D9000000</color>
+
+    <color name="dots_bg">#808080</color>
+    <color name="dots_line">#448AFF</color>
 
     <color name="example_3_white">#D9FFFFFF</color>
     <color name="example_3_blue">#1973E8</color>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/calendar_slidingLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_theme"
+    android:gravity="bottom"
+    android:orientation="vertical">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/addProduct_constrLayout_calendar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/addProduct_constrLayout_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintVertical_weight="5">
+
+        <ImageView
+            android:id="@+id/addProduct_iv_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:src="@mipmap/ic_launcher_round"
+            app:layout_constraintBottom_toTopOf="@id/addProduct_tv_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/addProduct_tv_name"
+            style="@style/TitleFragmentText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:textSize="42sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addProduct_iv_image"
+            android:text="Mineral Water" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/addProduct_constrLayout_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/addproduct_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addProduct_constrLayout_calendar"
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintVertical_weight="5">
+
+
+        <EditText
+            android:id="@+id/addProduct_et_count"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginEnd="24dp"
+            android:maxLength="2"
+            android:background="@drawable/addproduct_spinner_bg"
+            android:gravity="center"
+            android:hint="1"
+            android:inputType="number"
+            app:layout_constraintBottom_toBottomOf="@+id/addProduct_sp_shelfLife"
+            app:layout_constraintEnd_toStartOf="@id/addProduct_sp_shelfLife"
+            app:layout_constraintHorizontal_weight="2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/addProduct_sp_shelfLife" />
+
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/addProduct_sp_shelfLife"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="48dp"
+            android:background="@drawable/addproduct_spinner_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="7"
+            app:layout_constraintStart_toEndOf="@id/addProduct_et_count"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/addProduct_et_date"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="@drawable/addproduct_spinner_bg"
+            android:gravity="center"
+            android:hint="Production Date"
+            android:maxLength="14"
+            android:inputType="date"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/addProduct_sp_shelfLife"
+            app:layout_constraintStart_toStartOf="@+id/addProduct_sp_shelfLife"
+            app:layout_constraintTop_toBottomOf="@id/addProduct_sp_shelfLife"
+            app:layout_constraintVertical_bias="0.1" />
+
+
+        <Button
+            android:id="@+id/addProduct_btn_add"
+            android:layout_width="0dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/addproduct_btn_bg"
+            android:elevation="8dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Add to Calendar"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.9"
+            app:layout_constraintTop_toBottomOf="@+id/addProduct_et_date" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

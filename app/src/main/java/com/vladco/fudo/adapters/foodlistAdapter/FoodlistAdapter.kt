@@ -8,6 +8,7 @@ import com.vladco.fudo.R
 
 class FoodlistAdapter(private val presenter: FoodlistAdapterPresenter) :
     RecyclerView.Adapter<FoodlistVH>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodlistVH {
         return FoodlistVH(
             LayoutInflater.from(parent.context).inflate(

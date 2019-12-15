@@ -14,5 +14,14 @@ interface CalendarView : MvpView {
     @StateStrategyType(SkipStrategy::class)
     fun toFoodListFragment()
 
+    @StateStrategyType(SkipStrategy::class)
+    fun toAddProductFragment()
+
+    @StateStrategyType(SkipStrategy::class)
+    fun toShopListFragment()
+
+    @StateStrategyType(SkipStrategy::class)
+    fun toTipsTabFragment()
+
 
 }

@@ -17,8 +17,11 @@ import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
 import com.vladco.fudo.*
+import com.vladco.fudo.addProduct.AddProductFragment
 import com.vladco.fudo.foodlist.FoodlistFragment
 import com.vladco.fudo.main.MainActivity
+import com.vladco.fudo.shoplist.ShoplistFragment
+import com.vladco.fudo.tipsTabs.TipsTabFragment
 import kotlinx.android.synthetic.main.calendar_day_layout.view.*
 import kotlinx.android.synthetic.main.calendar_fragment.*
 import kotlinx.android.synthetic.main.calendar_legend.view.*
@@ -62,8 +65,14 @@ class CalendarFragment : MvpAppCompatFragment(), CalendarView {
 
         initCalendar()
 
+        calendar_btn_tipsStatistics.setOnClickListener {
+            presenter.clickTips()
+        }
+        calendar_im_shoplist.setOnClickListener {
+            presenter.clickShopList()
+        }
         calendar_im_add.setOnClickListener {
-
+            presenter.clickAdd()
         }
         calendar_btn_myFood.setOnClickListener {
             presenter.clickFoodList()
@@ -204,6 +213,30 @@ class CalendarFragment : MvpAppCompatFragment(), CalendarView {
             ?.beginTransaction()
             ?.replace(R.id.main_container, FoodlistFragment(), null)
             ?.addToBackStack(FoodlistFragment::class.java.toString())
+            ?.commit()
+    }
+
+    override fun toAddProductFragment() {
+        activity?.supportFragmentManager
+            ?.beginTransaction()
+            ?.replace(R.id.main_container, AddProductFragment(), null)
+            ?.addToBackStack(FoodlistFragment::class.java.toString())
+            ?.commit()
+    }
+
+    override fun toShopListFragment() {
+        activity?.supportFragmentManager
+            ?.beginTransaction()
+            ?.replace(R.id.main_container, ShoplistFragment(), null)
+            ?.addToBackStack(ShoplistFragment::class.java.toString())
+            ?.commit()
+    }
+
+    override fun toTipsTabFragment() {
+        activity?.supportFragmentManager
+            ?.beginTransaction()
+            ?.replace(R.id.main_container, TipsTabFragment(), null)
+            ?.addToBackStack(TipsTabFragment::class.java.toString())
             ?.commit()
     }
 
