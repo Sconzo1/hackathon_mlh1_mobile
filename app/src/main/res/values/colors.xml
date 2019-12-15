@@ -3,4 +3,32 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+
+    <!--    <color name="white">#fff</color>-->
+    <!--    <color name="black">#000</color>-->
+    <color name="example_1_bg">#FF0000</color>
+    <color name="example_1_bg_light">#8501FA</color>
+
+    <color name="calendar_day">#D9000000</color>
+    <color name="calendar_selectedDay_stroke">#536DFE</color>
+    <color name="calendar_todayDay_solid">#448AFF</color>
+    <color name="calendar_todaySelectedDay_solid">#448AFF</color>
+    <color name="calendar_weekendDay">#448AFF</color>
+    <color name="calendar_weekdayDayOfWeek">#575757</color>
+
+    <color name="main_theme">#FCEC7F</color>
+
+    <color name="foodlist_cv_bg">#FFF5D1</color>
+
+    <color name="calendar_btn_food_shadow">#808080</color>
+
+
+    <color name="titleFragment">#D9000000</color>
+
+    <color name="example_3_white">#D9FFFFFF</color>
+    <color name="example_3_blue">#1973E8</color>
+    <color name="example_3_blue_light">#D2E3FC</color>
+    <color name="example_3_toolbar_color">#607D8B</color>
+    <color name="example_3_statusbar_color">#455A64</color>
 </resources>

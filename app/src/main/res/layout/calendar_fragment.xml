@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/calendar_slidingLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    android:orientation="vertical">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/calendar_constrLayout_calendar"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/calendar_constrLayout_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintVertical_weight="5">
+
+        <TextView
+            android:id="@+id/calendar_tv_month"
+            style="@style/TitleFragmentText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="December" />
+
+        <com.kizitonwose.calendarview.CalendarView
+            android:id="@+id/calendar_calv"
+            android:layout_width="260dp"
+            android:layout_height="260dp"
+            app:cv_dayViewResource="@layout/calendar_day_layout"
+            app:cv_monthHeaderResource="@layout/calendar_header"
+            app:cv_orientation="horizontal"
+            app:cv_outDateStyle="endOfGrid"
+            app:cv_scrollMode="paged"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/calendar_tv_month" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/calendar_constrLayout_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/cal_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/calendar_constrLayout_calendar"
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintVertical_weight="4">
+
+        <ImageButton
+            android:id="@+id/calendar_im_add"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/calendar_btn_add_bg"
+            android:src="@drawable/ic_add_blue_36dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/calendar_im_tips"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/calendar_btn_add_bg"
+            android:src="@drawable/ic_priority_high_black_24dp"
+            app:layout_constraintEnd_toStartOf="@+id/calendar_im_add"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/calendar_im_add" />
+
+        <ImageButton
+            android:id="@+id/calendar_im_foodlist"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/calendar_btn_add_bg"
+            android:src="@drawable/ic_assignment_black_24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toEndOf="@+id/calendar_im_add"
+            app:layout_constraintTop_toTopOf="@+id/calendar_im_add" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="1.5dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:background="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/calendar_im_foodlist" />
+
+        <Button
+            android:id="@+id/calendar_btn_myFood"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/calendar_btn_food_bg"
+            android:elevation="8dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="My Food"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toTopOf="@id/calendar_btn_tipsStatistics"
+            app:layout_constraintEnd_toEndOf="@+id/view"
+            app:layout_constraintStart_toStartOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+
+
+        <Button
+            android:id="@+id/calendar_btn_tipsStatistics"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/calendar_btn_food_bg"
+            android:elevation="8dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Tips &amp; Statistics"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/view"
+            app:layout_constraintStart_toStartOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/calendar_btn_myFood" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

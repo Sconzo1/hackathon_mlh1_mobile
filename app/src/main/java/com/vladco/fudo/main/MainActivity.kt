@@ -7,7 +7,6 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.PresenterType
 import com.vladco.fudo.R
 import com.vladco.fudo.calendar.CalendarFragment
-import kotlinx.android.synthetic.main.main_activity.*
 
 
 class MainActivity : MvpAppCompatActivity(), MainView {
@@ -21,7 +20,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
         setContentView(R.layout.main_activity)
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
-        setSupportActionBar(main_toolbar)
+//        setSupportActionBar(main_toolbar)
 
         init()
     }

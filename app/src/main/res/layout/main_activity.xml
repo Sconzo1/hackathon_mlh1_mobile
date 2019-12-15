@@ -6,23 +6,22 @@
     android:orientation="vertical">
 
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/main_toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:titleTextAppearance="@style/AppTheme.Toolbar.Title"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        android:elevation="4dp" />
+    <!--    <androidx.appcompat.widget.Toolbar-->
+    <!--        android:id="@+id/main_toolbar"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:titleTextAppearance="@style/AppTheme.Toolbar.Title"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="?attr/actionBarSize"-->
+    <!--        android:background="@color/colorPrimary"-->
+    <!--        android:elevation="4dp" />-->
 
     <FrameLayout
         android:id="@+id/main_container"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/main_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="0dp" />
+        android:layout_height="match_parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

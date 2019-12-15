@@ -9,6 +9,10 @@ import com.google.android.gms.vision.barcode.Barcode
 @InjectViewState
 class CalendarPresenter : MvpPresenter<CalendarView>() {
 
+    fun clickFoodList() {
+        viewState.toFoodListFragment()
+    }
+
     fun startScan() {
         val builder = MaterialBarcodeScannerBuilder()
             .withEnableAutoFocus(true)

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_theme"
+    android:gravity="center_horizontal|top"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/TitleFragmentText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
+        android:text="My Food" />
+
+    <EditText
+        android:id="@+id/foodlist_et_search"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/foodlist_sv_bg"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Search"
+        android:inputType="text"
+        android:queryHint="Search" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/foodlist_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal" />
+
+
+</LinearLayout>
