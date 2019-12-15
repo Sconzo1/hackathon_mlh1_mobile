@@ -1,6 +1,6 @@
 package com.vladco.fudo.adapters.foodlistAdapter
 
-import com.vladco.fudo.data.Food
+import com.vladco.fudo.model.data.Food
 
 interface FoodlistRowView {
 

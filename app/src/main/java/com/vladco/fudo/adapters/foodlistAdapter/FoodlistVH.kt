@@ -4,7 +4,7 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.vladco.fudo.data.Food
+import com.vladco.fudo.model.data.Food
 import kotlinx.android.synthetic.main.foodlist_row.view.*
 
 class FoodlistVH(private val v: View) : RecyclerView.ViewHolder(v), FoodlistRowView {

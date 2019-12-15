@@ -7,4 +7,8 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 @StateStrategyType(AddToEndStrategy::class)
 interface AddProductView : MvpView {
 
+    fun setTextProduct(name: String)
+
+    fun getShelfDate()
+
 }

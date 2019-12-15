@@ -23,6 +23,7 @@
                 android:layout_height="match_parent">
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/shoplist_rv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:paddingStart="16dp"
@@ -35,6 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
+                android:id="@+id/shoplist_fab_add"
                 android:layout_margin="16dp"
                 android:backgroundTint="@color/main_theme"
                 android:elevation="8dp"

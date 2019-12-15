@@ -1,4 +1,4 @@
-package com.vladco.fudo.data
+package com.vladco.fudo.model.data
 
 data class Tips(
     val icon: String,

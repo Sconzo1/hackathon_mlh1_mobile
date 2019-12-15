@@ -1,7 +1,7 @@
 package com.vladco.fudo.adapters.foodlistAdapter
 
 import android.util.Log
-import com.vladco.fudo.data.Food
+import com.vladco.fudo.model.data.Food
 
 class FoodlistAdapterPresenter(private var food: ArrayList<Food>) {
 

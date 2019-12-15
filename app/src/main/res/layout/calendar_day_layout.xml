@@ -15,4 +15,12 @@
         android:textSize="14sp"
         tools:text="22" />
 
+    <View
+        android:id="@+id/calendarDay_dot"
+        android:layout_width="4.5dp"
+        android:layout_height="4.5dp"
+        android:layout_marginBottom="2dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:background="@drawable/calendar_day_today_bg" />
+
 </FrameLayout>

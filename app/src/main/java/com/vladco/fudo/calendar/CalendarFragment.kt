@@ -1,11 +1,13 @@
 package com.vladco.fudo.calendar
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.view.children
+import androidx.core.view.isVisible
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.PresenterType
@@ -16,12 +18,21 @@ import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
-import com.vladco.fudo.*
+import com.vladco.fudo.R
 import com.vladco.fudo.addProduct.AddProductFragment
 import com.vladco.fudo.foodlist.FoodlistFragment
+import com.vladco.fudo.helps.daysOfWeekFromLocale
+import com.vladco.fudo.helps.makeInVisible
+import com.vladco.fudo.helps.makeVisible
+import com.vladco.fudo.helps.setTextColorRes
 import com.vladco.fudo.main.MainActivity
+import com.vladco.fudo.model.FudoDB
+import com.vladco.fudo.model.data.Food
 import com.vladco.fudo.shoplist.ShoplistFragment
 import com.vladco.fudo.tipsTabs.TipsTabFragment
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.calendar_day_layout.view.*
 import kotlinx.android.synthetic.main.calendar_fragment.*
 import kotlinx.android.synthetic.main.calendar_legend.view.*
@@ -31,6 +42,7 @@ import org.threeten.bp.YearMonth
 import org.threeten.bp.format.DateTimeFormatter
 import org.threeten.bp.format.TextStyle
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 // TODO (Перенести бизнес-логику календаря в P)
@@ -41,12 +53,15 @@ class CalendarFragment : MvpAppCompatFragment(), CalendarView {
     @InjectPresenter(type = PresenterType.LOCAL)
     lateinit var presenter: CalendarPresenter
 
+    private val disposables = CompositeDisposable()
+
     private var selectedDate: LocalDate? = null
     private val today = LocalDate.now()
     private val titleSameYearFormatter =
         DateTimeFormatter.ofPattern("MMMM").withLocale(Locale.ENGLISH)
     private val titleFormatter = DateTimeFormatter.ofPattern("MMMM yyyy").withLocale(Locale.ENGLISH)
 
+    private val listFood = ArrayList<Food>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,8 +72,21 @@ class CalendarFragment : MvpAppCompatFragment(), CalendarView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        presenter.startScan()
-        init()
+
+        disposables.add(presenter.getAllFood(FudoDB.getInstance(requireContext()).foodDao())
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                    listFood.clear()
+                    listFood.addAll(it)
+//                    Log.d("Fudo_appTag", it.toString())
+                    init()
+                },
+                {
+                    Log.d("Fudo_appTag", it.localizedMessage)
+                }
+            ))
     }
 
     private fun init() {
@@ -72,7 +100,7 @@ class CalendarFragment : MvpAppCompatFragment(), CalendarView {
             presenter.clickShopList()
         }
         calendar_im_add.setOnClickListener {
-            presenter.clickAdd()
+            presenter.clickAdd(selectedDate)
         }
         calendar_btn_myFood.setOnClickListener {
             presenter.clickFoodList()
@@ -81,6 +109,22 @@ class CalendarFragment : MvpAppCompatFragment(), CalendarView {
 
 
     private fun initCalendar() {
+
+        val events = mutableMapOf<LocalDate, ArrayList<Food>>()
+
+        listFood.forEach { it ->
+            val key = LocalDate.parse(it.date)
+            if (events[key] == null) {
+                events[key] = arrayListOf(it)
+            } else {
+                events[key]?.let { it1 ->
+                    it1.add(it)
+                    events.put(key, it1)
+                }
+            }
+
+        }
+
 
         calendar_calv.post {
             selectDate(today)
@@ -96,9 +140,9 @@ class CalendarFragment : MvpAppCompatFragment(), CalendarView {
         calendar_calv.scrollToMonth(currentMonth)
 
         class DayViewContainer(view: View) : ViewContainer(view) {
-            lateinit var day: CalendarDay // Will be set when this container is bound.
+            lateinit var day: CalendarDay
             val textView = view.calendarDay_tv_day
-            /*val dotView = view.exThreeDotView*/
+            val dotView = view.calendarDay_dot
 
             init {
                 view.setOnClickListener {
@@ -115,7 +159,7 @@ class CalendarFragment : MvpAppCompatFragment(), CalendarView {
             override fun bind(container: DayViewContainer, day: CalendarDay) {
                 container.day = day
                 val dayView = container.textView
-                /*val dotDayView = container.dotView*/
+                val dotDayView = container.dotView
 
                 dayView.text = day.date.dayOfMonth.toString()
 
@@ -125,20 +169,21 @@ class CalendarFragment : MvpAppCompatFragment(), CalendarView {
                     if (day.date == today && day.date == selectedDate) {
                         dayView.setTextColorRes(R.color.example_3_white)
                         dayView.setBackgroundResource(R.drawable.calendar_day_today_selected_bg)
-//                        dotDayView.makeInVisible()
+                        dotDayView.makeInVisible()
 
                     } else if (day.date == today) {
                         dayView.setTextColorRes(R.color.example_3_white)
                         dayView.setBackgroundResource(R.drawable.calendar_day_today_bg)
-//                        dotDayView.makeInVisible()
+                        dotDayView.makeInVisible()
 
                     } else if (day.date == selectedDate) {
                         dayView.setBackgroundResource(R.drawable.calendar_day_selected_bg)
-//                        dotDayView.makeInVisible()
+                        dotDayView.makeInVisible()
 
                     } else {
                         dayView.setTextColorRes(R.color.calendar_day)
                         dayView.background = null
+                        dotDayView.isVisible = events[day.date].orEmpty().isNotEmpty()
 
                         if (day.date.dayOfWeek == DayOfWeek.SATURDAY.plus(0) ||
                             day.date.dayOfWeek == DayOfWeek.SUNDAY.plus(0)
@@ -148,7 +193,7 @@ class CalendarFragment : MvpAppCompatFragment(), CalendarView {
                     }
                 } else {
                     dayView.makeInVisible()
-//                    dotDayView.makeInVisible()
+                    dotDayView.makeInVisible()
                 }
             }
         }
@@ -217,6 +262,7 @@ class CalendarFragment : MvpAppCompatFragment(), CalendarView {
     }
 
     override fun toAddProductFragment() {
+        Log.d("Fudo_appTag", "12122")
         activity?.supportFragmentManager
             ?.beginTransaction()
             ?.replace(R.id.main_container, AddProductFragment(), null)

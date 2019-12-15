@@ -1,6 +1,7 @@
-package com.vladco.fudo
+package com.vladco.fudo.helps
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -50,11 +51,19 @@ internal fun TextView.setTextColorRes(@ColorRes color: Int) =
 fun daysOfWeekFromLocale(): Array<DayOfWeek> {
     val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
     var daysOfWeek = DayOfWeek.values()
-    // Order `daysOfWeek` array so that firstDayOfWeek is at index 0.
+
     if (firstDayOfWeek != DayOfWeek.MONDAY) {
         val rhs = daysOfWeek.sliceArray(firstDayOfWeek.ordinal..daysOfWeek.indices.last)
         val lhs = daysOfWeek.sliceArray(0 until firstDayOfWeek.ordinal)
         daysOfWeek = rhs + lhs
     }
     return daysOfWeek
+}
+
+
+fun getDrawableWithName(v: View, name: String): Drawable? {
+    return ContextCompat.getDrawable(
+        v.context,
+        v.context.resources.getIdentifier(name, "drawable", v.context.packageName)
+    )
 }

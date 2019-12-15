@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal">
+
+    <com.vladco.fudo.helps.CircleCheckBox
+        android:id="@+id/shoplist_row_cchb"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        app:borderThickness="2dp"
+        app:circleBorderColor="#00CFAD"
+        app:innerCircleColor="#00CFAD"
+        app:innerCircleRadius="14dp"
+        app:outerCircleColor="#6400CFAD"
+        app:outerCircleRadius="6dp"
+        app:showOuterCircle="true"
+        app:textColor="#000000"
+        app:textLeftPadding="5dp"
+        app:textSize="16sp"
+        app:tickColor="#ffffff"
+        app:tickThickness="1dp"
+        app:text="Are you crazy?" />
+
+</LinearLayout>

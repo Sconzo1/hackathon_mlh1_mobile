@@ -8,7 +8,9 @@ import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.PresenterType
 import com.vladco.fudo.R
+import com.vladco.fudo.model.FudoDB
 import kotlinx.android.synthetic.main.addproduct_fragment.*
+import org.threeten.bp.LocalDate
 
 
 class AddProductFragment : MvpAppCompatFragment(), AddProductView {
@@ -31,6 +33,46 @@ class AddProductFragment : MvpAppCompatFragment(), AddProductView {
 
     private fun init() {
         addProduct_sp_shelfLife.setItems("Day", "Month", "Year")
+
+        presenter.findProduct()
+
+
+        addProduct_btn_add.setOnClickListener {
+            presenter.clickAddToCalendar()
+        }
+
+    }
+
+    override fun setTextProduct(name: String) {
+        addProduct_tv_name.text = name
+    }
+
+
+    override fun getShelfDate() {
+        val dateProd = addProduct_et_date.text.toString()
+
+        val dateProdLD = LocalDate.parse(dateProd) // Format (yyyy-MM-dd)
+
+        val dTime = addProduct_et_count.text.toString().toLong()
+
+        var sd = dateProdLD
+
+        when (addProduct_sp_shelfLife.selectedIndex) {
+            0 -> {
+                sd = dateProdLD.plusDays(dTime)
+            }
+            1 -> {
+                sd = dateProdLD.plusMonths(dTime)
+            }
+            2 -> {
+                sd = dateProdLD.plusYears(dTime)
+            }
+            else -> {
+
+            }
+        }
+
+        presenter.continued(sd.toString(), FudoDB.getInstance(requireContext()).foodDao())
 
     }
 }

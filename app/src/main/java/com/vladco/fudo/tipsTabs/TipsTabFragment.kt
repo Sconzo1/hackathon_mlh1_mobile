@@ -9,7 +9,7 @@ import com.vladco.fudo.R
 import com.vladco.fudo.adapters.ZoomOutPageTransformer
 import com.vladco.fudo.adapters.tipsTabsAdapter.TipsTabAdapter
 import com.vladco.fudo.adapters.tipsTabsAdapter.TipsTabAdapterPresenter
-import com.vladco.fudo.data.Tips
+import com.vladco.fudo.model.data.Tips
 import kotlinx.android.synthetic.main.tipstab_fragment.*
 
 
@@ -30,13 +30,10 @@ class TipsTabFragment : MvpAppCompatFragment(), TipsTabView {
     private fun init() {
 
         val list = arrayListOf(
-            Tips("1", "asdaaaaaaaaaaaaasdadasdasd"),
-            Tips("2", "asdaaaaaaaaa456123877321323121231237786aaaasdadasdasd"),
-            Tips("3", "456123877321323121231237786"),
-            Tips("4", "asdaaaaaa238213231212aasdadas238773213231212dasd"),
-            Tips("5", "asdaa312123aaaaaaa312123aaaasdad312123asdasd"),
-            Tips("6", "asdaaaaaa88888888asdadasdasd"),
-            Tips("7", "asdaaaaaa777777777sd")
+            Tips("kofe", "Откажитесь от пластиковых бутылок и одноразовых стаканчиков для кофе"),
+            Tips("britva", "Купите многоразовую бритву"),
+            Tips("vatnye_palochki", "Замените «расходники» eco-friendly аналогами"),
+            Tips("bag", "Пользуйтесь холщовой сумкой вместо пластиковых пакетов")
         )
 
         val adapter = TipsTabAdapter(TipsTabAdapterPresenter(list))

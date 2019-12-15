@@ -14,7 +14,7 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 import com.vladco.fudo.R
 import com.vladco.fudo.adapters.foodlistAdapter.FoodlistAdapter
 import com.vladco.fudo.adapters.foodlistAdapter.FoodlistAdapterPresenter
-import com.vladco.fudo.data.Food
+import com.vladco.fudo.model.data.Food
 import kotlinx.android.synthetic.main.foodlist_fragment.*
 
 
@@ -39,14 +39,14 @@ class FoodlistFragment : MvpAppCompatFragment(), FoodlistView {
     private fun init() {
 
         val list = arrayListOf(
-            Food("Moloko", "12.11.18", "#536DFE"),
-            Food("Хлеб", "22.09.19", "#FCEC7F"),
-            Food("Пиво", "12.12.17", "#808080"),
-            Food("Ягуар", "10.04.17", "#575757"),
-            Food("Слойка", "19.10.18", "#808080"),
-            Food("Компот", "30.12.20", "#FCEC7F"),
-            Food("Пюре", "02.01.21", "#575757"),
-            Food("Картошка", "12.08.22", "#536DFE")
+            Food(name = "Moloko", date = "12.11.18", color = "#536DFE"),
+            Food(name = "Хлеб", date = "22.09.19", color = "#FCEC7F"),
+            Food(name = "Пиво", date = "12.12.17", color = "#808080"),
+            Food(name = "Ягуар", date = "10.04.17", color = "#575757"),
+            Food(name = "Слойка", date = "19.10.18", color = "#808080"),
+            Food(name = "Компот", date = "30.12.20", color = "#FCEC7F"),
+            Food(name = "Пюре", date = "02.01.21", color = "#575757"),
+            Food(name = "Картошка", date = "12.08.22", color = "#536DFE")
         )
 
         val adapter = FoodlistAdapter(FoodlistAdapterPresenter(list))
