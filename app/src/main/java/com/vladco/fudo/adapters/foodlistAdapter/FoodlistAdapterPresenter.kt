@@ -14,11 +14,14 @@ class FoodlistAdapterPresenter(private var food: ArrayList<Food>) {
         view.setData(food[position])
     }
 
+    fun get(position: Int): Food {
+        return food[position]
+    }
+
     fun filter(sequence: CharSequence) {
 
         val temp = ArrayList<Food>()
 
-        Log.d("Fudo_appTag", sequence.isNotEmpty().toString())
         if (sequence.isNotEmpty()) {
             for (f in foodCopy) {
                 if (f.name.toLowerCase().contains(sequence.toString().toLowerCase()))

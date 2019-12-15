@@ -51,6 +51,17 @@ class Model {
         return shopFoodDao.getAllShopFood()
     }
 
+    fun deleteFood(foodDao: FoodDao, food: Food): Disposable {
+        return foodDao.deleteFood(food)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                Log.d("Fudo_appTag", "ready Delete: ${food.toString()}")
+            }, {
+                Log.d("Fudo_appTag", it.localizedMessage)
+            })
+    }
+
 
     fun saveBarcode(barcode: String) {
         barcodeStorage.setBarcode(barcode)

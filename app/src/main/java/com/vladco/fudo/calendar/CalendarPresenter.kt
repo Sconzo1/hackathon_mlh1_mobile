@@ -3,7 +3,6 @@ package com.vladco.fudo.calendar
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import com.edwardvanraak.materialbarcodescanner.MaterialBarcodeScannerBuilder
-import com.google.android.gms.vision.barcode.Barcode
 import com.vladco.fudo.model.Model
 import com.vladco.fudo.model.dao.FoodDao
 import com.vladco.fudo.model.data.Food
@@ -36,7 +35,7 @@ class CalendarPresenter : MvpPresenter<CalendarView>() {
         val builder = MaterialBarcodeScannerBuilder()
             .withEnableAutoFocus(true)
             .withBackfacingCamera()
-            .withBarcodeFormats(Barcode.EAN_13)
+//            .withBarcodeFormats()
             .withCenterTracker()
             .withText("Scanning...")
             .withResultListener {

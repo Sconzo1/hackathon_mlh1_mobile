@@ -15,6 +15,8 @@ class FoodlistVH(private val v: View) : RecyclerView.ViewHolder(v), FoodlistRowV
             foodlist_row_date.text = food.date
             foodlist_row_color.backgroundTintList =
                 ColorStateList.valueOf(Color.parseColor(food.color))
+//            foodlist_row_color.backgroundTintList =
+//                ColorStateList.valueOf(Color.parseColor(colors[rnd.nextInt(3)]))
         }
     }
 }

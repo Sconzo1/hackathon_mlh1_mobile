@@ -1,6 +1,7 @@
 package com.vladco.fudo.foodlist
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +15,11 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 import com.vladco.fudo.R
 import com.vladco.fudo.adapters.foodlistAdapter.FoodlistAdapter
 import com.vladco.fudo.adapters.foodlistAdapter.FoodlistAdapterPresenter
+import com.vladco.fudo.model.FudoDB
 import com.vladco.fudo.model.data.Food
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.foodlist_fragment.*
 
 
@@ -23,6 +28,10 @@ class FoodlistFragment : MvpAppCompatFragment(), FoodlistView {
 
     @InjectPresenter(type = PresenterType.LOCAL)
     lateinit var presenter: FoodlistPresenter
+
+    private val listFood = ArrayList<Food>()
+
+    private val disposables = CompositeDisposable()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,10 +42,24 @@ class FoodlistFragment : MvpAppCompatFragment(), FoodlistView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        init()
+        disposables.add(presenter.getAllFood(FudoDB.getInstance(requireContext()).foodDao())
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                    listFood.clear()
+                    listFood.addAll(it)
+//                    Log.d("Fudo_appTag", it.toString())
+                    init()
+                },
+                {
+                    Log.d("Fudo_appTag", it.localizedMessage)
+                }
+            ))
     }
 
     private fun init() {
+
 
         val list = arrayListOf(
             Food(name = "Moloko", date = "12.11.18", color = "#536DFE"),
@@ -49,15 +72,14 @@ class FoodlistFragment : MvpAppCompatFragment(), FoodlistView {
             Food(name = "Картошка", date = "12.08.22", color = "#536DFE")
         )
 
-        val adapter = FoodlistAdapter(FoodlistAdapterPresenter(list))
+        val adapter = FoodlistAdapter(FoodlistAdapterPresenter(listFood))
 
         foodlist_rv.layoutManager = LinearLayoutManager(requireContext())
         foodlist_rv.adapter = adapter
 
-        foodlist_et_search.doOnTextChanged { text, start, count, after ->
+        foodlist_et_search.doOnTextChanged { text, _, _, _ ->
             text?.let {
                 adapter.filter(it)
-
             }
         }
 

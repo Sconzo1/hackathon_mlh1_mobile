@@ -5,6 +5,7 @@ import com.arellomobile.mvp.MvpPresenter
 import com.vladco.fudo.model.Model
 import com.vladco.fudo.model.dao.FoodDao
 import com.vladco.fudo.model.data.Food
+import java.util.*
 
 @InjectViewState
 class AddProductPresenter : MvpPresenter<AddProductView>() {
@@ -25,7 +26,10 @@ class AddProductPresenter : MvpPresenter<AddProductView>() {
 
 
         name?.let {
-            val f = Food(name = it, date = shDate, color = "#000008")
+
+            val rnd = Random()
+            val colors = listOf<String>("#DD4B4B", "#EAFB2B", "#56DD4B")
+            val f = Food(name = it, date = shDate, color = colors[rnd.nextInt(3)])
 
             model.insertFood(foodDao, f)
 
